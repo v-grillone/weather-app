@@ -1,0 +1,153 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: inline-block;
+
+}
+
+.main-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Background */
+
+.background-container{
+    width:100%;
+    height: 100%;
+    position: absolute;
+}
+
+.background-overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+.background-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Content Container */
+
+.content-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 0;
+}
+
+/* content continer - Greetings Section */
+
+.greetings-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 40px;
+}
+
+.greetings-container h1{
+    font-size: 3rem;
+    color: #fff;
+}
+
+.greetings-container h3{
+    font-size: 1.5rem;
+    color: #eee;
+}
+
+/* Content Section - Search Section */
+
+.search-container{
+    display: flex;
+    height: 25px;
+}
+
+.search-container .search-bar{
+    width: 300px;
+}
+
+.search-container button{
+    width: 40px;
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.search-container .fa-magnifying-glass{
+    color: #eee;
+}
+
+/* Content Section - City Information */
+
+.city-information{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    gap: 10px;
+}
+
+.city-information h3{
+    font-size: 2rem;
+    color: #bb7;
+}
+
+.city-information h5{
+    font-size: 1.2rem;
+    color: #ddddbb;
+}
+
+/* content-section - Seven Day */
+
+.seven-day-container{
+    display: flex;
+    gap: 50px;
+}
+
+.day-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.day{
+    font-size: 1.2rem;
+    color: #c7c7c7;
+}
+
+.day-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75px;
+    gap: 15px;
+    border: 2px solid #828282;
+    padding: 15px;
+}
+
+.day-temp{
+    font-size: 1.5rem;
+    color: #c7c7c7;
+}
+
+.day-image{
+    font-size: 1.8rem;
+    color: #c7c7c7;
+}
