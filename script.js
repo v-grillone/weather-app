@@ -5,34 +5,27 @@ let getWeather = async function(city, key){
     const resolveCoordinates = await fetch(pathCoordinates);
     const jsonCoordinates = await resolveCoordinates.json();
     let lat = jsonCoordinates[0].lat;
-    let lon = jsonCoordinates[0].lon
+    let lon = jsonCoordinates[0].lon;
     let pathWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${key}`
     async function weatherData(path){
         const resolveWeather = await fetch(path);
         const jsonWeather = await resolveWeather.json();
         let temp = jsonWeather.current.temp;
         let description = jsonWeather.current.weather[0].main;
+        let icon = `http://openweathermap.org/img/wn/${jsonWeather.current.weather[0].icon}@2x.png`;
+        console.log(icon);
         let humidity = jsonWeather.current.humidity;
         let windSpeed = jsonWeather.current.wind_speed; 
         appendTemp(temp); 
+        appendIcon(icon);
         appendDescription(description); 
         appendHumidity(humidity);
         appendWindSpeed(windSpeed);  
         // for loop to append day to 7 day forcast.
         for(let i = 1; i < jsonWeather.daily.length; i++){
-            let day = [jsonWeather.daily[i].temp.max, jsonWeather.daily[i].weather[0].main];
+            let day = [jsonWeather.daily[i].temp.max, jsonWeather.daily[i].weather[0].main, `http://openweathermap.org/img/wn/${jsonWeather.daily[i].weather[0].icon}@2x.png`];
             appendDay(day);
         };
-
-        // let day1 = [jsonWeather.daily[1].temp.max, jsonWeather.daily[1].weather[0].main]
-        // appendDay(day);
-        // let day2 = [jsonWeather.daily[2].temp.max, jsonWeather.daily[2].weather[0].main]
-        // let day3 = [jsonWeather.daily[3].temp.max, jsonWeather.daily[3].weather[0].main]
-        // let day4 = [jsonWeather.daily[4].temp.max, jsonWeather.daily[4].weather[0].main]
-        // let day5 = [jsonWeather.daily[5].temp.max, jsonWeather.daily[5].weather[0].main]
-        // let day6 = [jsonWeather.daily[6].temp.max, jsonWeather.daily[6].weather[0].main]
-        // let day7 = [jsonWeather.daily[7].temp.max, jsonWeather.daily[7].weather[0].main]
-        // console.log();
     }
     weatherData(pathWeather);
 };
@@ -59,6 +52,16 @@ let appendTemp = function(temp){
     tempRound = Math.round(temp);
     const cityTemp = document.getElementById('city-temp');
     cityTemp.innerText = tempRound+'°';
+};
+
+let appendIcon = function(icon){
+    const cityInfoDiv = document.getElementById('city-information');
+    const cityDescriptionHeader = document.getElementById('city-description')
+    const cityDescriptionIcon = document.createElement('img');
+    cityDescriptionIcon.id = 'city-description-icon';
+    cityDescriptionIcon.alt = 'temperature description icon';
+    cityDescriptionIcon.src = icon;
+    cityInfoDiv.insertBefore(cityDescriptionIcon, cityDescriptionHeader);
 };
 
 let appendDescription = function(description){
@@ -94,12 +97,13 @@ let appendDay = function(day){
     dayDataDiv.classList.add('day-data');
     const dayTempHeader = document.createElement('h5');
     dayTempHeader.classList.add('day-temp');
-    dayTempHeader.innerText = 15;
-    const dayIcon = document.createElement('i');
-    dayIcon.classList.add('fa-solid');
+    dayTempHeader.innerText = Math.round(day[0])+'°';
+    // adding image to day of the week weather
+    const dayIcon = document.createElement('img');
+    dayIcon.src = day[2];
     dayIcon.classList.add('day-image');
-    // to be done. create a for loop to determine which icon is appropriate
-    dayIcon.classList.add('fa-cloud');
+    dayIcon.alt = 'temperature description icon';
+
     // Constructing html to append to dom
     dayDataDiv.appendChild(dayTempHeader);
     dayDataDiv.appendChild(dayIcon);

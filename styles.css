@@ -113,6 +113,11 @@ body{
     color: #ddddbb;
 }
 
+.city-information img{
+    width: 60px;
+    margin: -10%;
+}
+
 /* content-section - Seven Day */
 
 .seven-day-container{
@@ -148,6 +153,6 @@ body{
 }
 
 .day-image{
-    font-size: 1.8rem;
-    color: #c7c7c7;
+    width: 60px;
+    margin: -20%;
 }
