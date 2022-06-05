@@ -105,7 +105,7 @@ body{
 
 .city-information h3{
     font-size: 2rem;
-    color: #bb7;
+    color: #ddddbb;
 }
 
 .city-information h5{
@@ -115,7 +115,7 @@ body{
 
 .city-information img{
     width: 60px;
-    margin: -10%;
+    margin: -2%;
 }
 
 /* content-section - Seven Day */
